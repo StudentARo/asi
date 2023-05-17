@@ -1,0 +1,24 @@
+# This is a boilerplate parameters config generated for pipeline 'linear_regression'
+# using Kedro 0.18.8.
+#
+# Documentation for this file format can be found in "Parameters"
+# Link: https://docs.kedro.org/en/0.18.8/kedro_project_setup/configuration.html#parameters
+
+model_options:
+  features:
+    - Inflight wifi service
+    - Departure/Arrival time convenient
+    - Ease of Online booking
+    - Gate location
+    - Food and drink
+    - Online boarding
+    - Seat comfort
+    - Inflight entertainment
+    - On-board service
+    - Leg room service
+    - Baggage handling
+    - Checkin service
+    - Inflight service
+    - Cleanliness
+    - Departure Delay in Minutes
+    - Arrival Delay in Minutes
