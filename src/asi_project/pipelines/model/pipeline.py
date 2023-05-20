@@ -1,11 +1,12 @@
 """
-This is a boilerplate pipeline 'model'
+This is a boilerplate pipeline 'linear_regression'
 generated using Kedro 0.18.8
 """
 
 from kedro.pipeline import Pipeline, node, pipeline
+from kedro.pipeline.modular_pipeline import pipeline
 
-from .nodes import evaluate_model, split_data, train_model
+from .nodes import split_data, train_model, evaluate_model 
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -26,12 +27,16 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=train_model,
                 inputs=["X_train", "y_train"],
-                outputs="model",
+                outputs="classifier",
                 name="train_model_node",
             ),
             node(
                 func=evaluate_model,
-                inputs=["model", "X_test", "y_test"],
+                inputs=["classifier", "X_test", "y_test"],
                 outputs=None,
                 name="evaluate_model_node",
-            ),])
+            ),
+        ],
+        namespace = "model",
+        inputs = ["preprocessed_flights_train", "preprocessed_flights_test"],
+        outputs = "classifier")
