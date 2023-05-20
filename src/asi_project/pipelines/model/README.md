@@ -1,4 +1,4 @@
-# Pipeline linear_regression
+# Pipeline model
 
 > *Note:* This is a `README.md` boilerplate generated using `Kedro 0.18.8`.
 

@@ -1,5 +1,5 @@
 """
-This is a boilerplate pipeline 'linear_regression'
+This is a boilerplate pipeline 'model'
 generated using Kedro 0.18.8
 """
 
@@ -26,12 +26,12 @@ def create_pipeline(**kwargs) -> Pipeline:
             node(
                 func=train_model,
                 inputs=["X_train", "y_train"],
-                outputs="regressor",
+                outputs="model",
                 name="train_model_node",
             ),
             node(
                 func=evaluate_model,
-                inputs=["regressor", "X_test", "y_test"],
+                inputs=["model", "X_test", "y_test"],
                 outputs=None,
                 name="evaluate_model_node",
             ),])

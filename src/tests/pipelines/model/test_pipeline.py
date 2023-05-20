@@ -1,5 +1,5 @@
 """
-This is a boilerplate test file for pipeline 'linear_regression'
+This is a boilerplate test file for pipeline 'model'
 generated using Kedro 0.18.8.
 Please add your pipeline tests here.
 
