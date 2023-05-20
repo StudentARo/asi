@@ -6,25 +6,41 @@
 flights_train:
   type: pandas.CSVDataSet
   filepath: data/01_raw/train.csv
+  layer: raw
 
 flights_test:
   type: pandas.CSVDataSet
   filepath: data/01_raw/test.csv
+  layer: raw
 
 preprocessed_flights_train:
   type: pandas.ParquetDataSet
   filepath: data/02_intermediate/preprocessed_flights_train.pq
+  layer: intermediate
 
 preprocessed_flights_test:
   type: pandas.ParquetDataSet
   filepath: data/02_intermediate/preprocessed_flights_test.pq
+  layer: intermediate
 
-regressor:
-  type: pickle.PickleDataSet
-  filepath: data/06_models/regressor.pickle
-  versioned: true
+data_processing.preprocessed_flights_train:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/preprocessed_flights_train.pq
+  layer: intermediate
 
+data_processing.preprocessed_flights_test:
+  type: pandas.ParquetDataSet
+  filepath: data/02_intermediate/preprocessed_flights_test.pq
+  layer: intermediate
+  
 classifier:
   type: pickle.PickleDataSet
   filepath: data/06_models/classifier.pickle
   versioned: true
+  layer: models
+
+model.classifier:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/classifier.pickle
+  versioned: true
+  layer: models
