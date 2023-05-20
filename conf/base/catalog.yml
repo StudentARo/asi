@@ -23,3 +23,8 @@ regressor:
   type: pickle.PickleDataSet
   filepath: data/06_models/regressor.pickle
   versioned: true
+
+classifier:
+  type: pickle.PickleDataSet
+  filepath: data/06_models/classifier.pickle
+  versioned: true
