@@ -23,6 +23,9 @@ logs/**
 # also keep the example dataset
 !data/01_raw/iris.csv
 
+# also keep the base dataset
+!data/01_raw/test.csv
+!data/01_raw/train.csv
 
 ##########################
 # Common files
