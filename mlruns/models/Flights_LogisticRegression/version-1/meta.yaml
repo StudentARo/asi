@@ -1,0 +1,13 @@
+aliases: []
+creation_timestamp: 1684848011701
+current_stage: None
+description: ''
+last_updated_timestamp: 1684848011701
+name: Flights_LogisticRegression
+run_id: 7829a6ddbd1c435ba6728b36e90e9d57
+run_link: ''
+source: file:///C:/Users/troja/Desktop/ASI/ProjectRepo/asi/mlruns/462376085197457200/7829a6ddbd1c435ba6728b36e90e9d57/artifacts/model
+status: READY
+status_message: null
+user_id: null
+version: 1
