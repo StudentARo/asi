@@ -32,15 +32,13 @@ data_processing.preprocessed_flights_test:
   type: pandas.ParquetDataSet
   filepath: data/02_intermediate/preprocessed_flights_test.pq
   layer: intermediate
-  
+
 classifier:
-  type: pickle.PickleDataSet
-  filepath: data/06_models/classifier.pickle
-  versioned: true
+  type: kedro_mlflow.io.models.MlflowModelLoggerDataSet
+  flavor: mlflow.sklearn
   layer: models
 
 model.classifier:
-  type: pickle.PickleDataSet
-  filepath: data/06_models/classifier.pickle
-  versioned: true
+  type: kedro_mlflow.io.models.MlflowModelLoggerDataSet
+  flavor: mlflow.sklearn
   layer: models

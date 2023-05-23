@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/troja/Desktop/ASI/ProjectRepo/asi/mlruns/462376085197457200/d78c2a07ccc94db5b83931c1b063aad8/artifacts
+end_time: 1684848673112
+entry_point_name: ''
+experiment_id: '462376085197457200'
+lifecycle_stage: active
+run_id: d78c2a07ccc94db5b83931c1b063aad8
+run_name: __default__
+run_uuid: d78c2a07ccc94db5b83931c1b063aad8
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1684848665452
+status: 3
+tags: []
+user_id: troja
