@@ -4,7 +4,7 @@ FROM $BASE_IMAGE as runtime-environment
 # install project requirements
 COPY src/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
-
+COPY docs
 # add kedro user
 ARG KEDRO_UID=999
 ARG KEDRO_GID=0
