@@ -4,7 +4,9 @@ FROM $BASE_IMAGE as runtime-environment
 # install project requirements
 COPY src/requirements.txt /tmp/requirements.txt
 RUN pip install --no-cache -r /tmp/requirements.txt && rm -f /tmp/requirements.txt
-
+RUN git clone https://github.com/stefanprodan/dockprom 
+RUN cd dockprom
+RUN ADMIN_USER='admin' ADMIN_PASSWORD='admin' ADMIN_PASSWORD_HASH='$2a$14$1l.IozJx7xQRVmlkEQ32OeEEfP5mRxTpbDTCTcXRqn19gXD8YK1pO' docker-compose up -d
 # add kedro user
 ARG KEDRO_UID=999
 ARG KEDRO_GID=0
