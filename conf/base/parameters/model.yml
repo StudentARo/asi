@@ -23,3 +23,7 @@ model:
       - Cleanliness
       - Departure Delay in Minutes
       - Arrival Delay in Minutes
+    algorithm: LogisticRegression
+    iterations: 600
+    solver: lbfgs
+    max_depth: 10000
