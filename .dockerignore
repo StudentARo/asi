@@ -14,7 +14,6 @@ conf/local
 
 # ignore everything in the following folders
 logs
-notebooks
 references
 results
 
@@ -23,3 +22,7 @@ results
 !notebooks/.gitkeep
 !references/.gitkeep
 !results/.gitkeep
+
+.git
+.github
+.gitignore
