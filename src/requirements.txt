@@ -20,3 +20,4 @@ kedro-datasets
 scikit-learn
 kedro-telemetry~=0.2.0
 kedro-docker
+kedro[all]
