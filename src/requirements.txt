@@ -17,6 +17,11 @@ matplotlib~=3.7.1
 kedro[pandas]
 kedro[pandas.ParquetDataSet]
 kedro-datasets
+tables
+kedro-viz
+cython
+scipi
+mlflow
 scikit-learn
 kedro-telemetry~=0.2.0
 kedro-docker
