@@ -24,4 +24,3 @@ COPY --chown=${KEDRO_UID}:${KEDRO_GID} . .
 EXPOSE 8888
 
 CMD ["kedro", "run"]
-CMD ["kedro", "mlflow ui"]
