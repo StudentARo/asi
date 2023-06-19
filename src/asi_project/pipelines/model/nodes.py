@@ -13,8 +13,7 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import r2_score, accuracy_score, roc_auc_score, confusion_matrix
-
-from sklearn.preprocessing import MinMaxScaler
+from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 from kedro_mlflow.io.models import MlflowModelLoggerDataSet
 
@@ -52,11 +51,7 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series, parameters: Dict) -> 
     Returns:
         Trained model.
     """
-    
-    #regressor = DecisionTreeClassifier()
-    #regressor = LogisticRegression(solver='lbfgs', max_iter=200)
     regressor = createRegressor[parameters["algorithm"]](parameters)
-
     regressor.fit(X_train, y_train)
     
     mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
