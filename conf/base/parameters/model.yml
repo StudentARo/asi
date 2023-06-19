@@ -5,25 +5,25 @@
 # Link: https://docs.kedro.org/en/0.18.8/kedro_project_setup/configuration.html#parameters
 
 model:
+  features:
+    - Inflight wifi service
+    - Departure/Arrival time convenient
+    - Ease of Online booking
+    - Gate location
+    - Food and drink
+    - Online boarding
+    - Seat comfort
+    - Inflight entertainment
+    - On-board service
+    - Leg room service
+    - Baggage handling
+    - Checkin service
+    - Inflight service
+    - Cleanliness
+    - Departure Delay in Minutes
+    - Arrival Delay in Minutes
   model_options:
-    features:
-      - Inflight wifi service
-      - Departure/Arrival time convenient
-      - Ease of Online booking
-      - Gate location
-      - Food and drink
-      - Online boarding
-      - Seat comfort
-      - Inflight entertainment
-      - On-board service
-      - Leg room service
-      - Baggage handling
-      - Checkin service
-      - Inflight service
-      - Cleanliness
-      - Departure Delay in Minutes
-      - Arrival Delay in Minutes
-    algorithm: LogisticRegression
-    iterations: 600
+    algorithm: DecisionTreeClassifier
+    iterations: 50
     solver: lbfgs
-    max_depth: 10000
+    max_depth: 100

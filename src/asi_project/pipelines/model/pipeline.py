@@ -14,13 +14,13 @@ def create_pipeline(**kwargs) -> Pipeline:
         [
             node(
                 func=split_data,
-                inputs=["preprocessed_flights_train", "params:model_options"],
+                inputs=["preprocessed_flights_train", "params:features"],
                 outputs=["X_train", "y_train"],
                 name="split_training_data_node",
             ),
             node(
                 func=split_data,
-                inputs=["preprocessed_flights_test", "params:model_options"],
+                inputs=["preprocessed_flights_test", "params:features"],
                 outputs=["X_test", "y_test"],
                 name="split_testing_data_node",
             ),

@@ -21,7 +21,7 @@ import mlflow
 import mlflow.sklearn
 from mlflow.models.signature import infer_signature
 
-def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
+def split_data(data: pd.DataFrame, features) -> Tuple:
     """
     Splits data into features and targets sets.
 
@@ -31,16 +31,16 @@ def split_data(data: pd.DataFrame, parameters: Dict) -> Tuple:
     Returns:
         Split data.
     """
-    X = data[parameters["features"]]
+    X = data[features]
     y = data["satisfaction"]
     
     return X, y
 
-createRegressor = {"LogisticRegression": lambda params: LogisticRegression(solver=params["solver"], max_iter=params["iterations"]),
-                   "RandomForestClassifier": lambda params: RandomForestClassifier(max_depth=params["max_depth"]),
-                   "DecisionTreeClassifier": lambda params: DecisionTreeClassifier(max_depth=params["max_depth"])}
+createRegressor = {"LogisticRegression": lambda model_options: LogisticRegression(solver=model_options["solver"], max_iter=model_options["iterations"]),
+                   "RandomForestClassifier": lambda model_options: RandomForestClassifier(max_depth=model_options["max_depth"]),
+                   "DecisionTreeClassifier": lambda model_options: DecisionTreeClassifier(max_depth=model_options["max_depth"])}
 
-def train_model(X_train: pd.DataFrame, y_train: pd.Series, parameters: Dict) -> LinearRegression:
+def train_model(X_train: pd.DataFrame, y_train: pd.Series, model_options: Dict) -> LinearRegression:
     """
     Trains the linear regression model.
 
@@ -51,7 +51,7 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series, parameters: Dict) -> 
     Returns:
         Trained model.
     """
-    regressor = createRegressor[parameters["algorithm"]](parameters)
+    regressor = createRegressor[model_options["algorithm"]](model_options)
     regressor.fit(X_train, y_train)
     
     mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
@@ -80,7 +80,7 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
         sk_model=model,
         artifact_path="model",
         signature=signature,
-        registered_model_name="Flights_LogisticRegression",
+        registered_model_name="Flights",
     )
     
     # evaluate the model
