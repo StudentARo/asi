@@ -26,3 +26,5 @@ results
 .github
 .gitignore
 .vs
+prometheus.yml
+docker-compose.yml
