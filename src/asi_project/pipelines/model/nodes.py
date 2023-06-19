@@ -5,6 +5,7 @@ generated using Kedro 0.18.8
 
 import logging
 from typing import Dict, Tuple
+import gradio as gr
 
 import pandas as pd
 from sklearn.model_selection import train_test_split
@@ -105,3 +106,24 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
     logger=logging.getLogger(__name__)
     logger.info("Model has an accuracy of %.3f on test data.",accuracy)
     logger.info("Model has an ROC AUC of %.3f on test data.",roc_auc)
+    
+    
+def create_gradio(features, model):
+    with gr.Blocks() as demo:
+        with gr.Row():
+            input_component = gr.DataFrame(headers=features, row_count=1, label="Input Data", interactive=True)
+        with gr.Row():
+            predict_button = gr.Button("Predict")
+        with gr.Row():
+            output_component = gr.Textbox(label="Output Data")
+        predict_button.click(classify, inputs=input_component, outputs=output_component)
+    #demo = gr.Interface(fn=classify, inputs=input_component, outputs=output_component, live=True)
+    demo.launch()
+        
+def classify(data):
+    mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
+    model = mlflow_model_logger.load()
+    if (model.predict(data)[0]):
+        return "Satisfied"
+    else:
+        return "Neutral or dissatisfied"

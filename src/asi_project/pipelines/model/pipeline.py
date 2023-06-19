@@ -6,7 +6,7 @@ generated using Kedro 0.18.8
 from kedro.pipeline import Pipeline, node, pipeline
 from kedro.pipeline.modular_pipeline import pipeline
 
-from .nodes import split_data, train_model, evaluate_model
+from .nodes import split_data, train_model, evaluate_model, create_gradio
 
 
 def create_pipeline(**kwargs) -> Pipeline:
@@ -35,6 +35,12 @@ def create_pipeline(**kwargs) -> Pipeline:
                 inputs=["classifier", "X_test", "y_test"],
                 outputs=None,
                 name="evaluate_model_node",
+            ),
+            node(
+                func=create_gradio,
+                inputs=["params:features", "classifier"],
+                outputs=None,
+                name="create_gradio_node",
             ),
         ],
         namespace = "model",
