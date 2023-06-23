@@ -13,10 +13,11 @@ from sklearn.linear_model import LinearRegression
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.linear_model import LogisticRegression
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import r2_score, accuracy_score, roc_auc_score, confusion_matrix
+from sklearn.metrics import r2_score, accuracy_score, roc_auc_score, confusion_matrix, ConfusionMatrixDisplay
 from sklearn.preprocessing import MinMaxScaler, StandardScaler
 
 from kedro_mlflow.io.models import MlflowModelLoggerDataSet
+import matplotlib.pyplot as plt
 
 import mlflow
 import mlflow.sklearn
@@ -52,15 +53,23 @@ def train_model(X_train: pd.DataFrame, y_train: pd.Series, model_options: Dict) 
     Returns:
         Trained model.
     """
+    
     regressor = createRegressor[model_options["algorithm"]](model_options)
     regressor.fit(X_train, y_train)
     
+    # log feature importance
+    if model_options["algorithm"] == "DecisionTreeClassifier":
+        feature_importances = dict(zip(X_train.columns, regressor.feature_importances_))
+        	
+        for key in feature_importances:
+            mlflow.log_metric(f"importance_{key}", feature_importances[key])
+        
     mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
     mlflow_model_logger.save(regressor)
     return regressor
 
 
-def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series) :
+def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Series, model_options: Dict) :
     """
     Calculates and logs the coefficient of determination.
 
@@ -107,8 +116,10 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
     logger.info("Model has an accuracy of %.3f on test data.",accuracy)
     logger.info("Model has an ROC AUC of %.3f on test data.",roc_auc)
     
+    return pd.DataFrame()
     
-def create_gradio(features, model):
+    
+def create_gradio(features, dummy):
     with gr.Blocks() as demo:
         with gr.Row():
             input_component = gr.DataFrame(headers=features, row_count=1, label="Input Data", interactive=True)

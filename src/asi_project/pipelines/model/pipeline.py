@@ -32,13 +32,13 @@ def create_pipeline(**kwargs) -> Pipeline:
             ),
             node(
                 func=evaluate_model,
-                inputs=["classifier", "X_test", "y_test"],
-                outputs=None,
+                inputs=["classifier", "X_test", "y_test", "params:model_options"],
+                outputs="dummy",
                 name="evaluate_model_node",
             ),
             node(
                 func=create_gradio,
-                inputs=["params:features", "classifier"],
+                inputs=["params:features", "dummy"],
                 outputs=None,
                 name="create_gradio_node",
             ),
