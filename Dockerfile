@@ -22,5 +22,6 @@ ARG KEDRO_GID=0
 COPY --chown=${KEDRO_UID}:${KEDRO_GID} . .
 
 EXPOSE 8888
+EXPOSE 7860
 
 CMD ["kedro", "run"]
