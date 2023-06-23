@@ -130,15 +130,11 @@ def create_gradio(features, dummy):
         with gr.Row():
             output_component = gr.Textbox(label="Output Data")
         predict_button.click(classify, inputs=input_component, outputs=output_component)
-    logger.info("2")
     demo.launch(share=True)
-    logger.info("3")
         
 def classify(data):
-    print("Loading model...")
     mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
     model = mlflow_model_logger.load()
-    print("Done")
     if (model.predict(data)[0]):
         return "Satisfied"
     else:
