@@ -114,16 +114,17 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
     #printout the results
     logger=logging.getLogger(__name__)
     logger.info("Model has an accuracy of %.3f on test data.",accuracy)
-    print("HŁE HŁĘ HŁE HŁE")
+    logger.info("HŁE HŁĘ HŁE HŁE")
     logger.info("Model has an ROC AUC of %.3f on test data.",roc_auc)
     
     res = 0
-    print(f"Dummy value: {res}")
+    logger.info(f"Dummy value: {res}")
     return res
     
     
 def create_gradio(features, dummy):
-    print("1")
+    logger=logging.getLogger(__name__)
+    logger.info("1")
     with gr.Blocks() as demo:
         with gr.Row():
             input_component = gr.DataFrame(headers=features, row_count=1, label="Input Data", interactive=True)
@@ -132,9 +133,9 @@ def create_gradio(features, dummy):
         with gr.Row():
             output_component = gr.Textbox(label="Output Data")
         predict_button.click(classify, inputs=input_component, outputs=output_component)
-    print("2")
+    logger.info("2")
     demo.launch(share=True)
-    print("3")
+    logger.info("3")
         
 def classify(data):
     print("Loading model...")
