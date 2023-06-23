@@ -24,6 +24,5 @@ scipi
 mlflow
 scikit-learn
 kedro-telemetry~=0.2.0
-kedro-docker
 kedro-mlflow
 gradio
