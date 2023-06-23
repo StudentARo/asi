@@ -114,12 +114,9 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
     #printout the results
     logger=logging.getLogger(__name__)
     logger.info("Model has an accuracy of %.3f on test data.",accuracy)
-    logger.info("HŁE HŁĘ HŁE HŁE")
     logger.info("Model has an ROC AUC of %.3f on test data.",roc_auc)
     
-    res = 0
-    logger.info(f"Dummy value: {res}")
-    return res
+    return 0
     
     
 def create_gradio(features, dummy):
