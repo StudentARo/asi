@@ -116,10 +116,11 @@ def evaluate_model(model: LinearRegression, X_test: pd.DataFrame, y_test: pd.Ser
     logger.info("Model has an accuracy of %.3f on test data.",accuracy)
     logger.info("Model has an ROC AUC of %.3f on test data.",roc_auc)
     
-    return pd.DataFrame()
+    return 0
     
     
 def create_gradio(features, dummy):
+    print("1")
     with gr.Blocks() as demo:
         with gr.Row():
             input_component = gr.DataFrame(headers=features, row_count=1, label="Input Data", interactive=True)
@@ -128,12 +129,15 @@ def create_gradio(features, dummy):
         with gr.Row():
             output_component = gr.Textbox(label="Output Data")
         predict_button.click(classify, inputs=input_component, outputs=output_component)
-    #demo = gr.Interface(fn=classify, inputs=input_component, outputs=output_component, live=True)
-    demo.launch()
+    print("2")
+    demo.launch(share=True)
+    print("3")
         
 def classify(data):
+    print("Loading model...")
     mlflow_model_logger = MlflowModelLoggerDataSet(flavor="mlflow.sklearn")
     model = mlflow_model_logger.load()
+    print("Done")
     if (model.predict(data)[0]):
         return "Satisfied"
     else:
